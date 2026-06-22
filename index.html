@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الهدي للتطريز والملابس — Al-Huda Garments</title>
+  <meta name="description" content="موقع الهدي الرسمي لخدمات التطريز بالكومبيوتر والملابس الجاهزة في مصر. دقة متناهية، أحدث الماكينات، وأفضل الأسعار لليونيفورم والملابس المطرزة." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:       #1B3558;
+      --navy-deep:  #0F2035;
+      --navy-mid:   #2E5BA8;
+      --gold:       #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-pale:  #F5E8C0;
+      --cream:      #F5F0E8;
+      --charcoal:   #2D2D2D;
+      --white:      #FFFFFF;
+      --text-muted: #b0c0d8;
+      --card-bg:    rgba(8, 16, 35, 0.78);
+      --card-border: rgba(201, 168, 76, 0.22);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      color: var(--white);
+      overflow-x: hidden;
+      background-color: #0a1428;
+    }
+
+    /* Video background container */
+    .video-bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .video-bg-container video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+
+    /* Dark overlay layer */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at center, rgba(6, 12, 28, 0.65) 0%, rgba(3, 6, 15, 0.88) 100%);
+    }
+
+    /* ══════════════════════════════════════ NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      backdrop-filter: blur(24px) saturate(150%);
+      background: rgba(8, 16, 35, 0.88);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+      padding: 0.6rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      direction: ltr;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .logo-img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 12px rgba(201,168,76,0.45));
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      direction: rtl; /* Keep links reading RTL */
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .nav-links a:hover {
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .nav-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy-deep) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s !important;
+    }
+    .nav-btn:hover {
+      transform: scale(1.05) !important;
+      box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5) !important;
+    }
+
+    /* ══════════════════════════════════════ HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 9rem 2rem 5rem;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 50%, transparent 40%, rgba(6,12,28,0.7) 100%);
+      pointer-events: none;
+    }
+    .thread-scan {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-light) 50%, var(--gold) 60%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      opacity: 0.5;
+    }
+    @keyframes scanDown {
+      0%   { top: 0;    opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.5; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      border-radius: 50px;
+      padding: 0.45rem 1.4rem;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      animation: fadeInDown 0.9s ease both;
+      position: relative; z-index: 1;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      animation: fadeInUp 1s ease 0.2s both;
+      position: relative; z-index: 1;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      line-height: 1.85;
+      animation: fadeInUp 1s ease 0.4s both;
+      position: relative; z-index: 1;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      animation: fadeInUp 1s ease 0.6s both;
+      position: relative; z-index: 1;
+    }
+    .btn {
+      padding: 0.9rem 2.2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy-deep);
+      box-shadow: 0 10px 25px rgba(201, 168, 76, 0.35);
+      border: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(201, 168, 76, 0.5);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    /* Hero stats */
+    .hero-stats {
+      display: flex;
+      gap: 4rem;
+      margin-top: 4rem;
+      animation: fadeInUp 1s ease 0.75s both;
+      position: relative; z-index: 1;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ══════════════════════════════════════ SECTIONS GENERAL */
+    section {
+      padding: 7rem 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.5rem auto;
+    }
+
+    /* Glass class */
+    .glass {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px) saturate(130%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .glass::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* Separator line */
+    .sep {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+    }
+
+    /* ══════════════════════════════════════ WHY CHOOSE US */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .feature-card {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      height: 100%;
+    }
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.12);
+    }
+    .feature-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════ SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .service-card {
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    }
+    .service-badge {
+      font-size: 0.75rem;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .service-list {
+      list-style: none;
+      text-align: right;
+      padding-right: 1rem;
+      margin-bottom: 2rem;
+    }
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--cream);
+      padding: 0.35rem 0;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .service-list li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* ══════════════════════════════════════ CNC TECHNOLOGY */
+    .tech-showcase {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(27,53,88,0.85), rgba(15,32,53,0.9));
+      padding: 4rem;
+      border-radius: 28px;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+    }
+    .tech-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .tech-sub {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .tech-text {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .tech-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .tech-spec-item {
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      padding-bottom: 0.6rem;
+    }
+    .spec-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .spec-value {
+      font-weight: 700;
+      color: var(--gold-light);
+      font-size: 1rem;
+    }
+    .tech-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .tech-circle {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+      border: 2px dashed rgba(201, 168, 76, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: rotateCircle 25s linear infinite;
+    }
+    @keyframes rotateCircle {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .tech-icon-inner {
+      font-size: 8rem;
+      position: absolute;
+      filter: drop-shadow(0 0 25px rgba(201, 168, 76, 0.4));
+      animation: pulseTech 3s ease-in-out infinite alternate;
+    }
+    @keyframes pulseTech {
+      0% { transform: scale(0.95); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* ══════════════════════════════════════ PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .portfolio-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+    }
+    .portfolio-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 32, 53, 0.95) 0%, rgba(27, 53, 88, 0.4) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .portfolio-item:hover .portfolio-img {
+      transform: scale(1.08);
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    .portfolio-cat {
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+    .portfolio-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* ══════════════════════════════════════ CALCULATOR SECTION */
+    .calc-container {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .calc-form {
+      padding: 3rem;
+    }
+    .calc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: var(--cream);
+    }
+    .form-select, .form-input {
+      width: 100%;
+      background: rgba(10, 20, 40, 0.6);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-select:focus, .form-input:focus {
+      outline: none;
+      border-color: var(--gold-light);
+      box-shadow: 0 0 10px rgba(201, 168, 76, 0.25);
+    }
+    .form-select option {
+      background: #0a1428;
+      color: var(--white);
+    }
+    .range-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .form-range {
+      flex-grow: 1;
+      accent-color: var(--gold);
+      height: 6px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .range-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 50px;
+      text-align: center;
+    }
+
+    /* Calculator Results Card */
+    .calc-result-card {
+      padding: 3rem 2.5rem;
+      background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(27,53,88,0.45) 100%);
+      border: 1px solid rgba(201,168,76,0.3);
+      position: sticky;
+      top: 100px;
+    }
+    .result-header {
+      text-align: center;
+      border-bottom: 1px dashed rgba(201, 168, 76, 0.3);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .result-price-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .result-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      margin-top: 0.3rem;
+    }
+    .result-price span {
+      font-size: 1.2rem;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 500;
+    }
+    .result-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .result-row .label { color: var(--text-muted); }
+    .result-row .value { color: var(--cream); font-weight: 600; }
+    .result-row.total-row {
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .result-row.total-row .value {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+    .btn-submit-calc {
+      width: 100%;
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════ FAQS (ACCORDION) */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card-bg);
+      transition: all 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(201,168,76,0.4);
+    }
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.05rem;
+      user-select: none;
+    }
+    .faq-question::after {
+      content: '+';
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease-out, padding 0.35s ease;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      background: rgba(10, 20, 40, 0.25);
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      max-height: 200px;
+    }
+
+    /* ══════════════════════════════════════ CONTACT SECTION */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .contact-card {
+      padding: 2.5rem;
+    }
+    .info-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      margin-bottom: 1.8rem;
+    }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-icon {
+      font-size: 1.8rem;
+      color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201,168,76,0.2);
+      flex-shrink: 0;
+    }
+    .info-content h4 {
+      font-size: 1.05rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .info-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .contact-form-card {
+      padding: 3rem;
+    }
+    .contact-btn {
+      width: 100%;
+      border: none;
+      font-size: 1rem;
+    }
+
+    /* ══════════════════════════════════════ SUCCESS MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 15, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      width: 90%;
+      max-width: 480px;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #162a4a 0%, #0a1428 100%);
+      border: 1px solid var(--gold);
+      border-radius: 24px;
+      transform: scale(0.8);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.8), 0 0 50px rgba(201,168,76,0.25);
+    }
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+    .modal-icon {
+      font-size: 4rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      animation: checkPulse 1s ease infinite alternate;
+    }
+    @keyframes checkPulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(201,168,76,0.4)); }
+      100% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(201,168,76,0.8)); }
+    }
+    .modal-content h3 {
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .modal-content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .modal-ref {
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px dashed var(--gold);
+      border-radius: 8px;
+      padding: 0.6rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+    .btn-close-modal {
+      padding: 0.7rem 2rem;
+    }
+
+    /* ══════════════════════════════════════ WHATSAPP FLOATING BUTTON */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      z-index: 100;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 2rem;
+      box-shadow: 0 4px 25px rgba(37, 211, 102, 0.5);
+      transition: all 0.3s;
+      animation: floatBtn 3s ease-in-out infinite;
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      background: #20ba5a;
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+    }
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ══════════════════════════════════════ FOOTER */
+    footer {
+      background: rgba(3, 6, 15, 0.95);
+      border-top: 1px solid rgba(201,168,76,0.18);
+      padding: 5rem 3rem 2rem;
+      direction: rtl;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 4rem;
+      max-width: 1300px;
+      margin: 0 auto 3rem;
+    }
+    .footer-logo-area h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .footer-logo-area p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .footer-links h4, .footer-contact h4 {
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+    .footer-contact p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      display: flex;
+      gap: 0.6rem;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.8rem;
+      text-align: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .footer-bottom p {
+      color: rgba(139,155,180,0.4);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ══════════════════════════════════════ RESPONSIVE */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .tech-showcase { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-container { grid-template-columns: 1fr; }
+      .calc-result-card { position: static; }
+      .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.5rem 1.5rem; }
+      .nav-links { display: none; } /* On mobile, a hamburger menu would go here, we'll keep it simple */
+      .features-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .calc-form { padding: 1.5rem; }
+      .contact-form-card { padding: 1.8rem; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    }
+
+    /* Animations */
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(30px);  } to { opacity:1; transform:translateY(0); } }
+  </style>
+</head>
+<body>
+
+<!-- Video Background -->
+<div class="video-bg-container">
+  <video autoplay loop muted playsinline poster="bg.jpg">
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- Header / Navbar -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo_transparent.png" alt="الهدي للتطريز" class="logo-img" />
+    <span>Al-Huda Garments</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">الرئيسية</a></li>
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#tech">تكنولوجيا التطريز</a></li>
+    <li><a href="#portfolio">معرض أعمالنا</a></li>
+    <li><a href="#calculator" class="nav-btn">حاسبة الأسعار</a></li>
+    <li><a href="#contact">اتصل بنا</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="thread-scan"></div>
+  <div class="hero-badge">🤖 تكنولوجيا التطريز الرقمي الأحدث في مصر</div>
+  <h1 class="hero-title">
+    الهدي للتطريز والملابس الجاهزة<br />
+    <span>Al-Huda Garments</span>
+  </h1>
+  <p class="hero-subtitle">
+    نُقدّم خدمات التطريز الرقمي بالكومبيوتر للشركات والمصانع والأفراد بدقة رقمية متناهية (0.1mm). حوّل شعار علامتك التجارية لتحفة فنية مطرزة بخيوط عالمية الجودة ومقاومة للغسيل.
+  </p>
+  <div class="hero-ctas">
+    <a href="#calculator" class="btn btn-primary">احسب تكلفة طلبك</a>
+    <a href="#portfolio" class="btn btn-secondary">تصفح معرض الأعمال</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">15</div>
+      <div class="hero-stat-label">لون تطريز متزامن</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">0.1mm</div>
+      <div class="hero-stat-label">دقة توجيه الإبرة CNC</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-label">جودة وخيوط Madeira</div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- WHY CHOOSE US -->
+<section id="why-us">
+  <div class="section-header">
+    <span class="section-label">لماذا تختار الهدي؟</span>
+    <h2 class="section-title">الدقة والسرعة والجودة الحقيقية</h2>
+    <div class="divider"></div>
+    <p class="section-desc">نحن لا نقوم بالتطريز فحسب، بل نبني هويتك البصرية على الملابس بدقة هندسية لا تخطئها العين.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card glass">
+      <span class="feature-icon">📐</span>
+      <h3>دقة هندسية متناهية</h3>
+      <p>نعمل بدقة توجيه تصل إلى 0.1 ملم لتطريز التفاصيل الأكثر تعقيداً والحروف الصغيرة جداً بوضوح ونظافة تامة.</p>
+    </div>
+    <div class="feature-card glass">
+      <span class="feature-icon">🧵</span>
+      <h3>خيوط Madeira العالمية</h3>
+      <p>نستخدم خيوط Madeira وIsacord الألمانية المعتمدة المقاومة للغسيل، والمقاومة للمواد الكيماوية والبهتان.</p>
+    </div>
+    <div class="feature-card glass">
+      <span class="feature-icon">⚡</span>
+      <h3>سرعة تسليم فائقة</h3>
+      <p>بفضل خطوط إنتاجنا والماكينات متعددة الرؤوس، نقوم بتسليم العينات في 24 ساعة، والطلبات الكبيرة في أيام معدودة.</p>
+    </div>
+    <div class="feature-card glass">
+      <span class="feature-icon">💻</span>
+      <h3>تحويل رقمي احترافي</h3>
+      <p>نمتلك خبرة واسعة في الـ Digitizing الاحترافي وتحويل أي صورة أو لوجو إلى ملف إبر وتوجيه رقمي DST/PES.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-label">خدماتنا الرئيسية</span>
+    <h2 class="section-title">تطريز احترافي لكل الاحتياجات</h2>
+    <div class="divider"></div>
+    <p class="section-desc">حلول متكاملة لتطريز الملابس الجاهزة واليونيفورم للشركات والمؤسسات بأعلى معايير الجودة.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card glass">
+      <span class="service-icon">👕</span>
+      <span class="service-badge">الأكثر طلباً</span>
+      <h3>يونيفورم وملابس الشركات</h3>
+      <p>تطريز شعار شركتك بدقة متناهية على تيشيرتات البولو، والقمصان، والبدل، وملابس العمل لتعكس هويتك باحترافية.</p>
+      <ul class="service-list">
+        <li>تيشيرتات بولو قطنية فاخرة</li>
+        <li>قمصان وبدلات رسمية للموظفين</li>
+        <li>أزياء طبية وسكراب ومآزر</li>
+        <li>ملابس سلامة مهنية وجاكيتات</li>
+      </ul>
+    </div>
+    <div class="service-card glass">
+      <span class="service-icon">🧢</span>
+      <span class="service-badge">مبيعات وهدايا</span>
+      <h3>تطريز الكاب والهدايا</h3>
+      <p>نطرز على الكابات، القبعات، الشنط القماشية، والمنتجات الترويجية بدقة عالية لتعطي طابعاً فريداً لعملائك.</p>
+      <ul class="service-list">
+        <li>قبعات وكابات 5 و6 بنل</li>
+        <li>حقائب تسوق قماشية مطرزة</li>
+        <li>هدايا وبورتريهات مطرزة مخصصة</li>
+        <li>تطريز بارز وثلاثي الأبعاد (3D)</li>
+      </ul>
+    </div>
+    <div class="service-card glass">
+      <span class="service-icon">💻</span>
+      <span class="service-badge">تصميم رقمي</span>
+      <h3>خدمة الـ Digitizing وتحويل اللوجو</h3>
+      <p>نحول لوجو علامتك التجارية لملف برمجي جاهز للماكينات، مع تحسين مسار الإبرة لتقليل العيوب وزيادة المتانة.</p>
+      <ul class="service-list">
+        <li>تحويل ملفات AI, PNG, PDF</li>
+        <li>تصدير لصيغ DST, PES, EXP وغيرها</li>
+        <li>تعديل وتحسين ملفات التطريز التالفة</li>
+        <li>عينات محاكاة ثلاثية الأبعاد قبل التنفيذ</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- TECHNOLOGY CNC SECTION -->
+<section id="tech">
+  <div class="tech-showcase">
+    <div class="tech-content">
+      <span class="section-label">التكنولوجيا المستخدمة</span>
+      <h3>خط إنتاج التطريز بالكومبيوتر الـ CNC</h3>
+      <p class="tech-sub">تكنولوجيا رقمية ألمانية ويابانية تضمن سرعة متناهية وتكراراً مثالياً.</p>
+      <p class="tech-text">
+        في الهدي للتطريز، نعتمد على ماكينات تطريز رقمية CNC مجهزة بـ 6 إلى 12 رأس تطريز يعملون في وقت واحد. هذا يضمن أن تكون كل قطعة مطرزة مطابقة تماماً للأخرى بنسبة 100% دون أي فروقات بشرية.
+      </p>
+      <div class="tech-specs">
+        <div class="tech-spec-item">
+          <span class="spec-label">سرعة غرز الماكينة</span>
+          <span class="spec-value">1,200 غرزة / دقيقة</span>
+        </div>
+        <div class="tech-spec-item">
+          <span class="spec-label">الحد الأقصى للألوان</span>
+          <span class="spec-value">15 لوناً في التصميم الواحد</span>
+        </div>
+        <div class="tech-spec-item">
+          <span class="spec-label">مساحة التطريز للرأس</span>
+          <span class="spec-value">500 × 450 مم</span>
+        </div>
+        <div class="tech-spec-item">
+          <span class="spec-label">دقة تحريك الإطار</span>
+          <span class="spec-value">0.1 مم خطوة بخطوة</span>
+        </div>
+      </div>
+    </div>
+    <div class="tech-visual">
+      <div class="tech-circle"></div>
+      <span class="tech-icon-inner">🤖</span>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header">
+    <span class="section-label">معرض أعمالنا</span>
+    <h2 class="section-title">شاهد دقة التطريز في الحقيقة</h2>
+    <div class="divider"></div>
+    <p class="section-desc">مجموعة من الصور الحقيقية للعينات والمنتجات التي قمنا بتطريزها لعملائنا في الهدي.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <img src="hero_showcase.png" alt="شعار الهدي مطرز" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">علامات تجارية</span>
+        <h4 class="portfolio-title">شعار الهدي للتطريز والملابس الجاهزة</h4>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="embroidery_sample_1.jpg" alt="تطريز ملابس بولو" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">يونيفورم شركات</span>
+        <h4 class="portfolio-title">تطريز تيشيرت بولو قطن 100%</h4>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="embroidery_sample_2.jpg" alt="تطريز شعارات دقيقة" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">دقة متناهية</span>
+        <h4 class="portfolio-title">تطريز شعارات معقدة بالخيوط المعدنية</h4>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="social_mockup.png" alt="كابات مطرزة" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">كابات وقبعات</span>
+        <h4 class="portfolio-title">كابات مطرزة بتطريز ثلاثي الأبعاد بارز</h4>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="bg.jpg" alt="قماش تطريز كتان" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">خامات فاخرة</span>
+        <h4 class="portfolio-title">تطريز مباشر على أقمشة الكتان الفاخرة</h4>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="logo.png" alt="لوجو مطرز" class="portfolio-img" />
+      <div class="portfolio-overlay">
+        <span class="portfolio-cat">شعار البراند الرسمي</span>
+        <h4 class="portfolio-title">تحويل اللوجو المكتبي لتطريز نافر</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CALCULATOR & ORDERING SECTION -->
+<section id="calculator">
+  <div class="section-header">
+    <span class="section-label">احسب تكلفتك فوراً</span>
+    <h2 class="section-title">حاسبة تكلفة التطريز التفاعلية</h2>
+    <div class="divider"></div>
+    <p class="section-desc">حدد خيارات طلبك لتصلك تسعيرة تقديرية فورية، وأرسل الطلب ليقوم مهندس التطريز بمراجعة وتأكيد طلبك.</p>
+  </div>
+
+  <div class="calc-container">
+    <!-- Form Area -->
+    <div class="calc-form glass">
+      <h3 class="calc-title">📝 تفاصيل الطلب</h3>
+      <form id="embroidery-calc-form">
+        <div class="form-group">
+          <label class="form-label" for="service-type">نوع الخدمة المطلوبة</label>
+          <select id="service-type" class="form-select" onchange="calculatePrice()">
+            <option value="corporate">يونيفورم وملابس شركات (تيشيرت/قميص)</option>
+            <option value="cap">تطريز كابات وقبعات</option>
+            <option value="custom">هدايا وتطريز شخصي مخصص</option>
+            <option value="digitizing">تصميم رقمي (Digitizing) وتصدير ملف فقط</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="fabric-group">
+          <label class="form-label" for="fabric-type">نوع القماش المستخدم</label>
+          <select id="fabric-type" class="form-select" onchange="calculatePrice()">
+            <option value="cotton">قطن فاخر (Cotton 100%)</option>
+            <option value="polyester">بوليستر مقاوم للمياه والحرارة</option>
+            <option value="linen">كتان طبيعي فخم (Linen)</option>
+            <option value="leather">جلد طبيعي أو صناعي (Leather)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="logo-details-group">
+          <label class="form-label" for="logo-details">حجم وتفاصيل الشعار (اللوجو)</label>
+          <select id="logo-details" class="form-select" onchange="calculatePrice()">
+            <option value="simple">شعار بسيط وصغير (شعار جيب - حتى 5,000 غرزة)</option>
+            <option value="medium">شعار متوسط التفاصيل والألوان (حتى 10,000 غرزة)</option>
+            <option value="complex">شعار كبير أو معقد جداً (تطريز كامل الظهر - حتى 25,000 غرزة)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="qty-group">
+          <label class="form-label" for="order-qty">كمية القطع المطلوبة</label>
+          <div class="range-container">
+            <input type="range" id="order-qty" class="form-range" min="1" max="500" value="50" oninput="updateQtyVal(this.value); calculatePrice();">
+            <span class="range-val" id="qty-display">50</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="user-name">الاسم بالكامل</label>
+          <input type="text" id="user-name" class="form-input" placeholder="مثال: أحمد محمد" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="user-phone">رقم الموبايل (واتساب)</label>
+          <input type="tel" id="user-phone" class="form-input" placeholder="مثال: 01012345678" required>
+        </div>
+
+        <div class="form-group" id="file-group">
+          <label class="form-label" for="user-file">أرفق شعارك أو تصميمك (اختياري)</label>
+          <input type="file" id="user-file" class="form-input" accept="image/*,.pdf,.ai,.dst">
+        </div>
+      </form>
+    </div>
+
+    <!-- Results Area -->
+    <div class="calc-result-card glass">
+      <div class="result-header">
+        <div class="result-price-label">السعر التقديري الإجمالي</div>
+        <div class="result-price" id="calc-total-price">1,750 <span>ج.م</span></div>
+      </div>
+      <div class="result-details">
+        <div class="result-row">
+          <span class="label">تكلفة القطعة الواحدة</span>
+          <span class="value" id="calc-piece-price">35 ج.م</span>
+        </div>
+        <div class="result-row">
+          <span class="label">برمجة اللوجو (Digitizing)</span>
+          <span class="value" id="calc-digitize-fee">مجاني (للكميات > 20)</span>
+        </div>
+        <div class="result-row">
+          <span class="label">زمن الإنتاج التقديري</span>
+          <span class="value" id="calc-delivery-time">3-4 أيام عمل</span>
+        </div>
+        <div class="result-row total-row">
+          <span class="label">الإجمالي شامل الخصم</span>
+          <span class="value" id="calc-grand-total">1,750 ج.م</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary btn-submit-calc" onclick="submitOrder()">تأكيد وطلب تسعيرة رسمية 🚀</button>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- FAQS -->
+<section id="faqs">
+  <div class="section-header">
+    <span class="section-label">الأسئلة الأكثر شيوعاً</span>
+    <h2 class="section-title">إجابات لكل استفساراتك</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">ما هي صيغ الملفات المقبولة للتطريز بالكومبيوتر؟</div>
+      <div class="faq-answer">
+        نقبل جميع صيغ الصور والشعارات تقريباً (AI, PDF, PNG, JPG, PSD). في حالة وجود ملف تطريز مبرمج مسبقاً، يمكنك إرساله بصيغة DST أو PES. مهندسو البرمجة في الهدي يتكفلون بتحويل أي صورة إلى كود إبرة احترافي.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">هل يوجد حد أدنى للكمية التي يمكن طلبها؟</div>
+      <div class="faq-answer">
+        لا يوجد حد أدنى لخدمات الـ Digitizing والبرمجة. بالنسبة لقطع الملابس المطرزة، نبدأ من قطعة واحدة، ولكن هناك خصومات قوية جداً تبدأ من 10 قطع وتزداد كلما زادت كمية الطلب.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">ما هو سعر خدمة البرمجة (Digitizing) ومتى تكون مجانية؟</div>
+      <div class="faq-answer">
+        تكلفة برمجة الشعار بالكامل وتحسين مسار الإبر وتصدير الملف هي 200 ج.م كرسوم لمرة واحدة. ولكننا نقدم هذه الخدمة **مجانًا بالكامل** لجميع طلبات اليونيفورم والملابس التي تزيد عن 20 قطعة.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">كم يستغرق الشحن والتوصيل لجميع المحافظات؟</div>
+      <div class="faq-answer">
+        نقوم بشحن المنتجات بعد فحص جودتها لكافة محافظات مصر. يستغرق الشحن العادي من 2 إلى 4 أيام عمل بعد انتهاء مرحلة التطريز. كما نوفر خدمة الشحن السريع للمحافظات الرئيسية.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-label">تواصل معنا</span>
+    <h2 class="section-title">نحن هنا لخدمتك دائماً</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-card glass">
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-content">
+            <h4>رقم الهاتف والدعم</h4>
+            <p>01062923992 (دعم واتساب متاح 24/7)</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-content">
+            <h4>المقر الرئيسي والورشة</h4>
+            <p>جمهورية مصر العربية ، القاهرة ، المنطقة الصناعية</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-content">
+            <h4>البريد الإلكتروني للشركات</h4>
+            <p>info@alhudagarments.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form-card glass">
+      <h3 class="calc-title" style="margin-bottom:1.5rem">✉️ أرسل رسالة مباشرة</h3>
+      <form id="direct-contact-form" onsubmit="event.preventDefault(); submitContact();">
+        <div class="form-group">
+          <label class="form-label" for="contact-name">الاسم</label>
+          <input type="text" id="contact-name" class="form-input" placeholder="اسمك الكريم" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-phone">رقم الهاتف</label>
+          <input type="tel" id="contact-phone" class="form-input" placeholder="رقم هاتفك للتواصل" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-msg">الرسالة أو الاستفسار</label>
+          <textarea id="contact-msg" class="form-input" rows="4" placeholder="اكتب تفاصيل طلبك أو استفسارك هنا..." style="resize:none;" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contact-btn">إرسال الرسالة ✉️</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/201062923992" class="whatsapp-btn" target="_blank" title="راسلنا عبر واتساب">💬</a>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="success-modal">
+  <div class="modal-content">
+    <div class="modal-icon">✓</div>
+    <h3 id="modal-title">تم استلام طلبك بنجاح!</h3>
+    <p id="modal-message">يقوم مهندس التطريز الآن بفحص شعارك وتصميمك ومراجعة الخيارات. سنتواصل معك هاتفياً أو عبر واتساب خلال 30 دقيقة لتأكيد السعر النهائي وموعد التسليم.</p>
+    <div class="modal-ref" id="modal-ref-id">REF-84920</div>
+    <button class="btn btn-primary btn-close-modal" onclick="closeModal()">حسناً، فهمت 👍</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo-area">
+      <h3>Al-Huda Garments</h3>
+      <p>
+        مصنع الهدي لخدمات التطريز بالكومبيوتر والملابس الجاهزة واليونيفورم. جودة تحسّها في كل غرزة، دقة رقمية متناهية، والتزام تام بمواعيد التسليم للشركات والمؤسسات الكبرى في مصر.
+      </p>
+    </div>
+    <div class="footer-links">
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#services">خدمات التطريز</a></li>
+        <li><a href="#tech">ماكينات الـ CNC</a></li>
+        <li><a href="#portfolio">معرض أعمالنا</a></li>
+        <li><a href="#calculator">حاسبة التسعيرة</a></li>
+        <li><a href="brand_guide.html" target="_blank">دليل الهوية البصرية (Brand Guide)</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>تواصل معنا</h4>
+      <p>📍 المنطقة الصناعية، القاهرة، مصر</p>
+      <p>📞 01062923992</p>
+      <p>✉️ info@alhudagarments.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>
+      &copy; 2026 Al-Huda Garments · الهدي للتطريز والملابس. جميع الحقوق محفوظة. تم التطوير بدقة متناهية.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ── Qty slider update ─────────────────────────────
+  function updateQtyVal(val) {
+    document.getElementById('qty-display').innerText = val;
+  }
+
+  // ── Pricing calculation logic ──────────────────────
+  function calculatePrice() {
+    const service = document.getElementById('service-type').value;
+    const fabric = document.getElementById('fabric-type').value;
+    const logo = document.getElementById('logo-details').value;
+    const qty = parseInt(document.getElementById('order-qty').value);
+
+    // Hide fabric or logo options if service is only Digitizing
+    const fabricGroup = document.getElementById('fabric-group');
+    const logoGroup = document.getElementById('logo-details-group');
+    
+    if (service === 'digitizing') {
+      fabricGroup.style.display = 'none';
+      logoGroup.style.display = 'none';
+    } else {
+      fabricGroup.style.display = 'block';
+      logoGroup.style.display = 'block';
+    }
+
+    let baseDigitizeFee = 200; // One-time setup fee
+    let stitchCostPerPiece = 0;
+    let fabricCostPerPiece = 0;
+
+    // Service pricing factor
+    if (service === 'corporate') {
+      stitchCostPerPiece = 25; 
+    } else if (service === 'cap') {
+      stitchCostPerPiece = 35;
+    } else if (service === 'custom') {
+      stitchCostPerPiece = 45;
+    } else if (service === 'digitizing') {
+      // Digitizing only: flat fee of 200 EGP, no per-piece charge
+      baseDigitizeFee = 200;
+    }
+
+    // Logo size / complexity factor
+    if (service !== 'digitizing') {
+      if (logo === 'simple') {
+        stitchCostPerPiece += 5;
+      } else if (logo === 'medium') {
+        stitchCostPerPiece += 15;
+      } else if (logo === 'complex') {
+        stitchCostPerPiece += 40;
+      }
+    }
+
+    // Fabric factor
+    if (service !== 'digitizing') {
+      if (fabric === 'cotton') {
+        fabricCostPerPiece = 15;
+      } else if (fabric === 'polyester') {
+        fabricCostPerPiece = 8;
+      } else if (fabric === 'linen') {
+        fabricCostPerPiece = 20;
+      } else if (fabric === 'leather') {
+        fabricCostPerPiece = 45;
+      }
+    }
+
+    // Free digitization fee for quantities greater than 20
+    let digitizeCharge = baseDigitizeFee;
+    if (qty > 20 || service === 'digitizing') {
+      digitizeCharge = 0; // Free setup fee for bulk or if flat rate is only digitize
+      if (service === 'digitizing') {
+        digitizeCharge = 200; // Force setup fee if only digitizing service requested
+      }
+    }
+
+    let perPieceTotal = stitchCostPerPiece + fabricCostPerPiece;
+    let itemsSubtotal = perPieceTotal * qty;
+    let rawTotal = itemsSubtotal + digitizeCharge;
+
+    // Bulk Quantity discount
+    let discountPercent = 0;
+    if (qty >= 10 && qty <= 30) {
+      discountPercent = 0.10; // 10%
+    } else if (qty > 30 && qty <= 100) {
+      discountPercent = 0.20; // 20%
+    } else if (qty > 100) {
+      discountPercent = 0.30; // 30%
+    }
+
+    let discountAmount = itemsSubtotal * discountPercent;
+    let finalTotal = Math.round(rawTotal - discountAmount);
+
+    // Calculate production/delivery time
+    let deliveryDays = "3-4 أيام عمل";
+    if (qty <= 5) {
+      deliveryDays = "24 - 48 ساعة (عينة سريعة)";
+    } else if (qty > 5 && qty <= 50) {
+      deliveryDays = "2-3 أيام عمل";
+    } else if (qty > 50 && qty <= 200) {
+      deliveryDays = "4-6 أيام عمل";
+    } else {
+      deliveryDays = "7-10 أيام عمل (حسب خط الإنتاج)";
+    }
+
+    // Update UI
+    if (service === 'digitizing') {
+      document.getElementById('calc-piece-price').innerText = "-";
+      document.getElementById('calc-digitize-fee').innerText = "200 ج.م";
+      document.getElementById('calc-total-price').innerHTML = `200 <span>ج.م</span>`;
+      document.getElementById('calc-grand-total').innerText = "200 ج.م";
+    } else {
+      document.getElementById('calc-piece-price').innerText = `${perPieceTotal} ج.م`;
+      document.getElementById('calc-digitize-fee').innerText = qty > 20 ? "مجاني (خصم كمية)" : `${digitizeCharge} ج.م`;
+      document.getElementById('calc-total-price').innerHTML = `${finalTotal.toLocaleString()} <span>ج.م</span>`;
+      document.getElementById('calc-grand-total').innerText = `${finalTotal.toLocaleString()} ج.م`;
+    }
+    
+    document.getElementById('calc-delivery-time').innerText = deliveryDays;
+  }
+
+  // Initial calculation
+  calculatePrice();
+
+  // ── Accordion logic ──────────────────────────────
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Close all other faq items
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // ── Modal popup triggers ──────────────────────────
+  function openModal(title, msg) {
+    const ref = "REF-" + Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('modal-ref-id').innerText = ref;
+    
+    if (title) document.getElementById('modal-title').innerText = title;
+    if (msg) document.getElementById('modal-message').innerText = msg;
+    
+    document.getElementById('success-modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('success-modal').classList.remove('active');
+  }
+
+  function submitOrder() {
+    const name = document.getElementById('user-name').value;
+    const phone = document.getElementById('user-phone').value;
+    
+    if (!name || !phone) {
+      alert("برجاء إدخال الاسم ورقم الموبايل للتواصل!");
+      return;
+    }
+    
+    openModal(
+      "تم استلام طلب التسعيرة بنجاح! 🎉",
+      "شكراً لك يا " + name + ". تم تسجيل طلبك التقديري وحفظ خياراتك. سيقوم مهندس التطريز بمراجعة لوجو التصميم والاتصال بك هاتفياً أو عبر واتساب لتأكيد التسعيرة النهائية وتفاصيل الشحن."
+    );
+    
+    // Reset form
+    document.getElementById('embroidery-calc-form').reset();
+    document.getElementById('order-qty').value = 50;
+    updateQtyVal(50);
+    calculatePrice();
+  }
+
+  function submitContact() {
+    const name = document.getElementById('contact-name').value;
+    openModal(
+      "شكراً لتواصلك معنا! ✉️",
+      "مرحباً " + name + ". تم إرسال رسالتك مباشرة لخدمة العملاء بنجاح. سنتواصل معك على رقم هاتفك المسجل في أقرب وقت ممكن خلال ساعات العمل الرسمية."
+    );
+    document.getElementById('direct-contact-form').reset();
+  }
+
+  // ── Scroll Reveal micro-animations ────────────────
+  const targets = document.querySelectorAll(
+    '.feature-card, .service-card, .portfolio-item, .faq-item, .calc-form, .calc-result-card, .contact-card, .contact-form-card'
+  );
+  
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }, Array.from(targets).indexOf(e.target) % 4 * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  targets.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(25px)';
+    el.style.transition = 'opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1), transform 0.7s cubic-bezier(0.19, 1, 0.22, 1)';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
